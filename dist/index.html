@@ -32,24 +32,29 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <section id= "leaderboard" class= "page"> </section>
 
+    <section id= "home" class="page">
+		<div id= "window" class= "col-md-12"> </div>
 
-	<div id= "window"></div>
+		<div id= "history" class= "col-md-12"> </div>
+		<form id= "submit-time">
+			<label> History <input type= "text"> 
+				<button id="Show history"> Submit </button>
+			</label>
+		</form>	 
 
-	<div id= "history">
-		<label> History <input type= "text"> 
-			<button id="Show history"> Submit </button>
-
-		</label>	
-	</div> 
-
-	<div id= "text">
-		<label> Username <input type="text"
-			placeholder="Create Username"> </label> <br>
-		<textarea> This is our text area </textarea>
-			<button id="Submit"> Submit </button> 
-	</div>
-
+		<div id= "text" class= "col-md-12"> 
+			<form id= "submit-form">
+				<label> Username <input type="text"
+					placeholder="Create Username" id="user"> 
+				</label> 
+					
+				<textarea id= "message"> </textarea>
+					<button id="Submit"> Submit </button> 
+			</form>
+		</div>
+	</section>
 
 
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js">
