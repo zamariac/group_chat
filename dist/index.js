@@ -41,6 +41,39 @@ $(document).ready(function(){
 
 		});	
 
+			setInterval(getMessages, 500);
+
+			function getMessages(){
+				$.get(
+					"https://warm-meadow-2141.herokuapp.com/messages",
+					onMessagesReceived,
+					"json"
+					);
+			}
+
+			function onMessagesReceived(data) {
+				var myChatroom = render(data);
+				var $window = $("#window");
+				$window.html(myChatroom);
+			}
+
+			function render(messages){
+				var returnHtml = "";
+				for (var i=0; i<messages.length; i++){
+					 var currentMessage = messages[i];
+					if(currentMessage.hasOwnProperty("username") && currentMessage.hasOwnProperty("text")){
+						returnHtml = returnHtml + "<div>" + currentMessage.username + ":" + currentMessage.text + "</div>";
+
+					}
+
+
+
+				}
+
+					return returnHtml;
+	
+			}
+
 		
 			
 		},
