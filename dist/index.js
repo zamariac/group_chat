@@ -18,12 +18,30 @@ $(document).ready(function(){
 			
 			// var $text = $("#message").val();
 
+
 			$("#submit-form").on("submit", function(e) {
 			e.preventDefault();
 			console.log($("#user").val());
 			console.log($("#message").val());
 
-		});
+		
+				var myObj = {
+				username: $("#user").val(),
+				text: $("#message").val(), 
+			}
+
+				console.log(myObj)
+
+			$.post("https://warm-meadow-2141.herokuapp.com/messages",
+					myObj, 
+					"json"
+
+					)
+
+
+		});	
+
+		
 			
 		},
 
