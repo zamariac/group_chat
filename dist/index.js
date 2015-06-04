@@ -24,6 +24,11 @@ $(document).ready(function(){
 			console.log($("#user").val());
 			console.log($("#message").val());
 
+			if($("#user").val("") || $("#message").val("")){
+				console.log ("invalid input") ; 
+			}
+			
+			else {
 		
 				var myObj = {
 				username: $("#user").val(),
@@ -38,6 +43,9 @@ $(document).ready(function(){
 
 					)
 
+			$("#message").val("");
+
+			}
 
 		});	
 

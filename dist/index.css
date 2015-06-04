@@ -1,6 +1,15 @@
+
 #window {
 	height: 600px;
 	background-color: red;
+	margin-top: -20px;
 
+}
 
+#message {
+	width: 100%;
+}
+
+#Submit {
+	width: 80%;
 }
