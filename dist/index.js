@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
 	var bluePrint = Backbone.Router.extend ({
-			routes: {
-				"" : "home",
-				"home": "home",
-				"leaderboard": "leaderboard" 
+		routes: {
+			"" : "home",
+			"home": "home",
+			"leaderboard": "leaderboard" 
 			},
 
 
@@ -28,6 +28,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
+					chatroom: 1,
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -69,8 +70,9 @@ $(document).ready(function(){
 
 			function onMessagesReceived(data) {
 				var myChatroom = render(data);
-				var $window = $("#window");
-				$window.html(myChatroom);
+				console.log(data);
+				var $chatWindow = $("#window");
+				$chatWindow.html(myChatroom);
 			}
 
 			function render(messages){
@@ -79,44 +81,22 @@ $(document).ready(function(){
 					 var currentMessage = messages[i];
 					if(currentMessage.hasOwnProperty("username") && currentMessage.hasOwnProperty("text")){
 						returnHtml = returnHtml + "<div>" + currentMessage.username + ":" + currentMessage.text + "</div>";
-
 					}
-
-
-
 				}
-
-					return returnHtml;
-	
-			}
-
-		
-			
+				return returnHtml;
+			}	
 		},
-
-
 
 		leaderboard: function(){
 			console.log("leaderboard");
 
 			$(".page").hide();
 			$("#leaderboard").show();
-
 		}
-
 	});
 
-		var myRouter = new bluePrint();
-		Backbone.history.start();
-
-		
-
-		
-		
-
-
-
-
+	var myRouter = new bluePrint();
+	Backbone.history.start();
 
 });
 
