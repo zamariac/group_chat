@@ -12,5 +12,17 @@
 }
 
 #Submit {
-	width: 80%;
+	/*width: 80%;
+	margin-left: auto;
+	margin-right: auto;*/
+}
+
+#submit-time {
+	float:right;
+}
+
+#display-leaders {
+	height:500px;
+	text-align: center;
+	background-color: red;
 }

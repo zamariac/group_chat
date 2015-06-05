@@ -28,7 +28,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
-					chatroom: 1,
+					chatroom: 1, //set this to attr or hash value of anchor tags? 1,2,3??
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -79,14 +79,13 @@ $(document).ready(function(){
 
 			function render(messages){
 				var returnHtml = "";
-				console.log(messages[0].created_at);
 				for (var i=0; i<messages.length; i++){
 					 var currentMessage = messages[i];
 					 var messageTime = currentMessage.created_at;
 					 // console.log(moment(messageTime).minute());
 					 // console.log(messageTime);
 					if(currentMessage.hasOwnProperty("username") && currentMessage.hasOwnProperty("text")){
-						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ":" + currentMessage.text + "</div>";
+						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 					}
 				}
 				return returnHtml;
@@ -95,9 +94,36 @@ $(document).ready(function(){
 
 		leaderboard: function(){
 			console.log("leaderboard");
-
 			$(".page").hide();
 			$("#leaderboard").show();
+
+			setInterval(getLeaders, 5000);
+
+			function getLeaders(){
+				$.get(
+					"https://warm-meadow-2141.herokuapp.com/messages/leaderboard",
+					onLeadersReceived,
+					"json"
+					);
+			}
+
+			function onLeadersReceived(data) {
+				var leaderboardResults = renderLeaders(data);
+				var $leaderWindow = $("#display-leaders");
+				$leaderWindow.html(leaderboardResults);
+				console.log(data); //just getting 1 object, not array of objects
+			}
+
+			function renderLeaders(leaders){
+				var returnHtml = "";
+				for (name in leaders){
+					value = leaders[name];
+					// var currentLeader = leaders[i];
+					// console.log(currentLeader);
+					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
+				}
+				return returnHtml;
+			}	
 		}
 	});
 
