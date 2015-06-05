@@ -1,8 +1,9 @@
 
 #window {
 	height: 600px;
-	background-color: red;
-	margin-top: -20px;
+/*	background-color: red;*/
+	margin-top: -10px;
+	overflow-y: auto;
 
 }
 

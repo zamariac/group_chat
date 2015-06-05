@@ -9,47 +9,55 @@ $(document).ready(function(){
 
 
 		home: function(){
-			console.log("chatroom")
+			console.log("chatroom");
 
 			$(".page").hide();
 			$("#home").show();
 
-			// var $user = $("#user").val();
-			
-			// var $text = $("#message").val();
-
-
 			$("#submit-form").on("submit", function(e) {
 			e.preventDefault();
-			console.log($("#user").val());
-			console.log($("#message").val());
+			// console.log($("#user").val());
+			// console.log($("#message").val());
 
-			if($("#user").val("") || $("#message").val("")){
-				console.log ("invalid input") ; 
+			if($("#user").val().length === 0 || $("#message").val().length === 0){
+				console.log ("empty string") ; 
+				console.log($("#user").val());
+				console.log($("#message").val());
 			}
 			
 			else {
 		
 				var myObj = {
-				username: $("#user").val(),
-				text: $("#message").val(), 
-			}
+					username: $("#user").val(),
+					text: $("#message").val()
+				};
 
-				console.log(myObj)
+				console.log(myObj);
 
-			$.post("https://warm-meadow-2141.herokuapp.com/messages",
+				$.post(
+					"https://warm-meadow-2141.herokuapp.com/messages",
 					myObj, 
 					"json"
 
-					)
+					);
 
-			$("#message").val("");
+				$("#message").val("");
 
 			}
 
 		});	
 
 			setInterval(getMessages, 500);
+
+			// window.setTimeout (function() {
+			// var objDiv = document.getElementById("window");
+			// objDiv.scrollTop = objDiv.scrollHeight;
+			// }, 500);
+
+			window.setInterval (function() {
+			var objDiv = document.getElementById("window");
+			objDiv.scrollTop = objDiv.scrollHeight;
+			}, 1000);
 
 			function getMessages(){
 				$.get(
@@ -89,7 +97,7 @@ $(document).ready(function(){
 
 
 		leaderboard: function(){
-			console.log("leaderboard")
+			console.log("leaderboard");
 
 			$(".page").hide();
 			$("#leaderboard").show();
@@ -110,5 +118,5 @@ $(document).ready(function(){
 
 
 
-})
+});
 
