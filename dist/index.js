@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 
 		home: function(){
-			console.log("chatroom");
+			// console.log("chatroom");
 
 			$(".page").hide();
 			$("#home").show();
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 		});	
 
-			setInterval(getMessages, 500);
+			setInterval(getMessages, 5000);
 
 			// window.setTimeout (function() {
 			// var objDiv = document.getElementById("window");
@@ -70,17 +70,23 @@ $(document).ready(function(){
 
 			function onMessagesReceived(data) {
 				var myChatroom = render(data);
-				console.log(data);
+				// console.log(data);
 				var $chatWindow = $("#window");
 				$chatWindow.html(myChatroom);
+
+				// console.log(data[0].created_at);
 			}
 
 			function render(messages){
 				var returnHtml = "";
+				console.log(messages[0].created_at);
 				for (var i=0; i<messages.length; i++){
 					 var currentMessage = messages[i];
+					 var messageTime = currentMessage.created_at;
+					 // console.log(moment(messageTime).minute());
+					 // console.log(messageTime);
 					if(currentMessage.hasOwnProperty("username") && currentMessage.hasOwnProperty("text")){
-						returnHtml = returnHtml + "<div>" + currentMessage.username + ":" + currentMessage.text + "</div>";
+						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ":" + currentMessage.text + "</div>";
 					}
 				}
 				return returnHtml;
