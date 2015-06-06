@@ -13,7 +13,6 @@ $(document).ready(function(){
 
 		home: function(){
 			// console.log("chatroom");
-
 			$(".page").hide();
 			$("#home").show();
 			$("#window2").hide();
@@ -223,7 +222,7 @@ $(document).ready(function(){
 					}
 				}
 				return returnHtml;
-			}	
+			}
 		},
 
 		chat3: function() {
@@ -270,8 +269,9 @@ $(document).ready(function(){
 			}
 
 		});	
-
 			setInterval(getMessages, 500);
+
+			
 
 			// window.setTimeout (function() {
 			// var objDiv = document.getElementById("window");
