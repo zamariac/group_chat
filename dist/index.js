@@ -34,7 +34,7 @@ $(document).ready(function(){
 			}
 			
 			else {
-		
+
 				var myObj = {
 					chatroom: 1, //set this to attr or hash value of anchor tags? 1,2,3??
 					username: $("#user").val(),
@@ -321,6 +321,34 @@ $(document).ready(function(){
 			$("#leaderboard").show();
 			$("#display-leaders").hide();
 			$("#display-chatleaders").show();
+
+			setInterval(getLeaders, 500);
+
+			function getLeaders(){
+				$.get(
+					"https://warm-meadow-2141.herokuapp.com/messages/active_chatrooms",
+					onChatLeadersReceived,
+					"json"
+					);
+			}
+
+			function onChatLeadersReceived(data) {
+				var leaderboardResults = renderChatLeaders(data);
+				var $leaderWindow = $("#display-chatleaders");
+				$leaderWindow.html(leaderboardResults);
+				console.log(data); //just getting 1 object, not array of objects
+			}
+
+			function renderChatLeaders(leaders){
+				var returnHtml = "";
+				for (name in leaders){
+					value = leaders[name];
+					// var currentLeader = leaders[i];
+					// console.log(currentLeader);
+					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
+				}
+				return returnHtml;
+			}	
 		}
 	});
 
