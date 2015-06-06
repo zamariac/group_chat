@@ -7,12 +7,11 @@ $(document).ready(function(){
 			"2": "chat2",
 			"3": "chat3",
 			"chat-leaders": "chatLeaders",
-			"leaderboard": "leaderboard" //g
+			"leaderboard": "leaderboard" 
 			},
 
 
 		home: function(){
-			// console.log("chatroom");
 			$(".page").hide();
 			$("#home").show();
 			$("#window2").hide();
@@ -24,8 +23,6 @@ $(document).ready(function(){
 
 			$("#Submit").on("click", function(e) {
 			e.preventDefault();
-			// console.log($("#user").val());
-			// console.log($("#message").val());
 
 			if($("#user").val().length === 0 || $("#message").val().length === 0){
 				console.log ("empty string") ; 
@@ -36,7 +33,7 @@ $(document).ready(function(){
 			else {
 
 				var myObj = {
-					chatroom: 1, //set this to attr or hash value of anchor tags? 1,2,3??
+					chatroom: 1,
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -58,11 +55,6 @@ $(document).ready(function(){
 
 			setInterval(getMessages, 5000);
 
-			// window.setTimeout (function() {
-			// var objDiv = document.getElementById("window");
-			// objDiv.scrollTop = objDiv.scrollHeight;
-			// }, 500);
-
 			window.setInterval (function() {
 			var objDiv = document.getElementById("window");
 			objDiv.scrollTop = objDiv.scrollHeight;
@@ -81,8 +73,6 @@ $(document).ready(function(){
 				// console.log(data);
 				var $chatWindow = $("#window");
 				$chatWindow.html(myChatroom);
-
-				// console.log(data[0].created_at);
 			}
 
 			function render(messages){
@@ -91,8 +81,6 @@ $(document).ready(function(){
 						 var currentMessage = messages[i];
 						 var messageTime = currentMessage.created_at;
 						 if (currentMessage.chatroom === 1) {
-						 // console.log(moment(messageTime).minute());
-						 // console.log(messageTime);
 							returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 						}
 					}
@@ -107,7 +95,7 @@ $(document).ready(function(){
 			$("#display-leaders").show();
 			$("#display-chatleaders").hide();
 
-			setInterval(getLeaders, 10000);
+			setInterval(getLeaders, 3000);
 
 			function getLeaders(){
 				$.get(
@@ -121,15 +109,33 @@ $(document).ready(function(){
 				var leaderboardResults = renderLeaders(data);
 				var $leaderWindow = $("#display-leaders");
 				$leaderWindow.html(leaderboardResults);
-				console.log(data); //just getting 1 object, not array of objects
+				function getUsers(){
+					$.get(
+						"https://warm-meadow-2141.herokuapp.com/messages/recent_users",
+						onUsersReceived,
+						"json"
+					);
+				}
+				getUsers();
+				function onUsersReceived(users) {
+					console.log(users);
+					var returnUserHtml = "";
+					var $userWindow = $("#recent");
+					for (var i= 0; i < users.length; i++){
+						var currentUser = users[i];
+						console.log(currentUser);
+						returnUserHtml = returnUserHtml + "<div>" + currentUser + "</div>";
+					}
+				return $userWindow.html(returnUserHtml);
+	
+				}
+				
 			}
 
 			function renderLeaders(leaders){
 				var returnHtml = "";
 				for (name in leaders){
 					value = leaders[name];
-					// var currentLeader = leaders[i];
-					// console.log(currentLeader);
 					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
 				}
 				return returnHtml;
@@ -149,8 +155,6 @@ $(document).ready(function(){
 
 			$("#Submit2").on("click", function(e) {
 			e.preventDefault();
-			// console.log($("#user").val());
-			// console.log($("#message").val());
 
 			if($("#user").val().length === 0 || $("#message").val().length === 0){
 				console.log ("empty string") ; 
@@ -161,7 +165,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
-					chatroom: 2, //set this to attr or hash value of anchor tags? 1,2,3??
+					chatroom: 2,
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -183,11 +187,6 @@ $(document).ready(function(){
 
 			setInterval(getMessages, 500);
 
-			// window.setTimeout (function() {
-			// var objDiv = document.getElementById("window");
-			// objDiv.scrollTop = objDiv.scrollHeight;
-			// }, 500);
-
 			window.setInterval (function() {
 			var objDiv = document.getElementById("window");
 			objDiv.scrollTop = objDiv.scrollHeight;
@@ -203,11 +202,8 @@ $(document).ready(function(){
 
 			function onMessagesReceived(data) {
 				var myChatroom = render2(data);
-				// console.log(data);
 				var $chatWindow = $("#window2");
 				$chatWindow.html(myChatroom);
-
-				// console.log(data[0].created_at);
 			}
 
 			function render2(messages){
@@ -216,8 +212,6 @@ $(document).ready(function(){
 					 var currentMessage = messages[i];
 					 var messageTime = currentMessage.created_at;
 					 if (currentMessage.chatroom === 2) {
-					 // console.log(moment(messageTime).minute());
-					 // console.log(messageTime);
 						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 					}
 				}
@@ -238,8 +232,6 @@ $(document).ready(function(){
 
 			$("#Submit3").on("click", function(e) {
 			e.preventDefault();
-			// console.log($("#user").val());
-			// console.log($("#message").val());
 
 			if($("#user").val().length === 0 || $("#message").val().length === 0){
 				console.log ("empty string") ; 
@@ -250,7 +242,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
-					chatroom: 3, //set this to attr or hash value of anchor tags? 1,2,3??
+					chatroom: 3,
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -271,13 +263,6 @@ $(document).ready(function(){
 		});	
 			setInterval(getMessages, 500);
 
-			
-
-			// window.setTimeout (function() {
-			// var objDiv = document.getElementById("window");
-			// objDiv.scrollTop = objDiv.scrollHeight;
-			// }, 500);
-
 			window.setInterval (function() {
 			var objDiv = document.getElementById("window");
 			objDiv.scrollTop = objDiv.scrollHeight;
@@ -293,11 +278,8 @@ $(document).ready(function(){
 
 			function onMessagesReceived(data) {
 				var myChatroom = render3(data);
-				// console.log(data);
 				var $chatWindow = $("#window3");
 				$chatWindow.html(myChatroom);
-
-				// console.log(data[0].created_at);
 			}
 
 			function render3(messages){
@@ -306,8 +288,6 @@ $(document).ready(function(){
 					 var currentMessage = messages[i];
 					 var messageTime = currentMessage.created_at;
 					 if (currentMessage.chatroom === 3) {
-					 // console.log(moment(messageTime).minute());
-					 // console.log(messageTime);
 						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 					}
 				}
@@ -336,15 +316,13 @@ $(document).ready(function(){
 				var leaderboardResults = renderChatLeaders(data);
 				var $leaderWindow = $("#display-chatleaders");
 				$leaderWindow.html(leaderboardResults);
-				console.log(data); //just getting 1 object, not array of objects
+				console.log(data);
 			}
 
 			function renderChatLeaders(leaders){
 				var returnHtml = "";
 				for (name in leaders){
 					value = leaders[name];
-					// var currentLeader = leaders[i];
-					// console.log(currentLeader);
 					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
 				}
 				return returnHtml;
@@ -354,6 +332,7 @@ $(document).ready(function(){
 
 	var myRouter = new bluePrint();
 	Backbone.history.start();
+
 
 });
 
