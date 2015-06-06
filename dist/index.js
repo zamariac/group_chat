@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 					);
 
-				// $("#message").val("");
+				$("#message").val("");
 
 			}
 
@@ -265,7 +265,7 @@ $(document).ready(function(){
 
 					);
 
-				// $("#message").val("");
+				$("#message").val("");
 
 			}
 
