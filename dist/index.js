@@ -4,6 +4,9 @@ $(document).ready(function(){
 		routes: {
 			"" : "home",
 			"home": "home",
+			"2": "chat2",
+			"3": "chat3",
+			"chat-leaders": "chatLeaders",
 			"leaderboard": "leaderboard" 
 			},
 
@@ -124,6 +127,18 @@ $(document).ready(function(){
 				}
 				return returnHtml;
 			}	
+		},
+
+		chat2: function() {
+			console.log("chat2");
+		},
+
+		chat3: function() {
+			console.log("chat3");
+		},
+
+		chatLeaders: function() {
+			
 		}
 	});
 

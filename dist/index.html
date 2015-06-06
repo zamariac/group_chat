@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> Group Chat</title>
-<link rel= "stylesheet" type="text/css" href="index.css">
-<link rel= "stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-</head>
-
-<body>
-<nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <head>
+        <title> Group Chat</title>
+        <link rel= "stylesheet" type="text/css" href="index.css">
+        <link rel= "stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <!-- <span class="sr-only">Toggle navigation</span> -->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">WARM MEADOW</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#home"> Chat room <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#leaderboard">Leaderboards</a></li>
-                </ul>
-                
-          
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
- <section id= "leaderboard" class= "page">
-    <span>Leaderboard</span>
-    <div class="col-md-12" id="display-leaders"></div>
-</section>
-
-    <section id= "home" class="page">
-        <div class="container-fluid">
-    		<div id= "window" class= "col-md-10 col-md-offset-1 well"> </div>
-
-    		<div id= "history" class= "col-md-12"> </div>
-    		<form id= "submit-time">
-    			<label> History <input type= "text"> 
-    				<button id="Show history"> Submit </button>
-    			</label>
-    		</form>	 
-
-    		<div id= "text" class= "col-md-12"> 
-    			<form id= "submit-form">
-    				<label> Username <input type="text"
-    					placeholder="Create Username" id="user"> 
-
-    				</label> <br>
-    					
-    				<textarea id= "message" class= "col-md-12"> </textarea>
-    					<button id="Submit"> Submit </button> 
-    			</form>
-    		</div>
-        </div>
-	</section>
-
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js">
-</script>
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js">
-</script>
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
-<script type="text/javascript" src="bower_components/backbone/backbone-min.js">
-</script>
-<script type="text/javascript" src= "index.js"></script>
-</body>
-</html>
+                    </button>
+                    <a class="navbar-brand" href="#">WARM MEADOW</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chatrooms <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#home">Chatroom 1</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#2">Chatroom 2</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#3">Chatroom 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Leaderboards <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#leaderboard">User Leaderboard</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#chat-leaders">Most Active Chatroom Leaderboard</a></li>
+                            </ul>
+                        </ul>
+                        
+                        
+                        </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
+                    <section id= "leaderboard" class= "page">
+                        <span>Leaderboard</span>
+                        <div class="col-md-12" id="display-leaders"></div>
+                    </section>
+                    <section id= "home" class="page">
+                        <div class="container-fluid">
+                            <div id= "window" class= "col-md-10 col-md-offset-1 well"> </div>
+                            <div id= "history" class= "col-md-12"> </div>
+                            <form id= "submit-time">
+                                <label> History <input type= "text">
+                                <button id="Show history"> Submit </button>
+                            </label>
+                        </form>
+                        <div id= "text" class= "col-md-12">
+                            <form id= "submit-form">
+                                <label> Username <input type="text"
+                                    placeholder="Create Username" id="user">
+                                </label> <br>
+                                
+                                <textarea id= "message" class= "col-md-12"> </textarea>
+                                <button id="Submit"> Submit </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <script type="text/javascript" src="bower_components/moment/min/moment.min.js">
+                </script>
+                <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js">
+                </script>
+                <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+                <script type="text/javascript" src="bower_components/backbone/backbone-min.js">
+                </script>
+                <script type="text/javascript" src= "index.js"></script>
+            </body>
+        </html>
