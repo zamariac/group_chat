@@ -138,7 +138,7 @@ $(document).ready(function(){
 		},
 
 		chatLeaders: function() {
-			
+			console.log("chatLeaders")
 		}
 	});
 
