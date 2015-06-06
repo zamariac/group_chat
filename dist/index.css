@@ -41,9 +41,14 @@
 #display-leaders {
 	height:500px;
 	text-align: center;
-	background-color: red;
+	background-color: gray;
 }
 
 strong {
 	color:red;
+}
+
+#recent {
+	height: 500px;
+	background-color: green;
 }

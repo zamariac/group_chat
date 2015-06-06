@@ -47,9 +47,12 @@
                         </div><!-- /.container-fluid -->
                     </nav>
                     <section id= "leaderboard" class= "page">
-                        <span>Leaderboard</span>
-                        <div class="col-md-12" id="display-leaders"></div>
-                        <div class="col-md-12" id="display-chatleaders"></div>
+                        
+                        <div class="col-md-6" id="display-leaders"><h3>User Leaderboard</h3><br></div>
+
+                        <div class="col-md-6" id="recent"> <h3>Recent Users</h3></div>
+
+                        <div class="col-md-12" id="display-chatleaders"><h3>MostActive Chatrooms</div>
                     </section>
                     <section id= "home" class="page">
                         <div class="container-fluid">
@@ -57,17 +60,13 @@
                             <div id= "window2" class= "col-md-10 col-md-offset-1 well"> room2</div>
                             <div id= "window3" class= "col-md-10 col-md-offset-1 well"> room 3</div>
   <!--                           <div id= "history" class= "col-md-12"> </div> -->
-                            <form id= "submit-time">
-                                <label> History <input type= "text">
-                                <button id="Show history"> Submit </button>
-                            </label>
-                        </form>
+   
                         <div id= "text" class= "col-md-12">
                             <form id= "submit-form">
                                 <label> Username <input type="text"
                                     placeholder="Create Username" id="user">
                                 </label> <br>
-                                
+
                                 <textarea id= "message" class= "col-md-12"> </textarea>
                                 <button id="Submit"> Submit </button>
                                 <button id="Submit2"> Submit 2</button>

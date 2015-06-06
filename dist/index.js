@@ -107,7 +107,7 @@ $(document).ready(function(){
 			$("#display-leaders").show();
 			$("#display-chatleaders").hide();
 
-			setInterval(getLeaders, 500);
+			setInterval(getLeaders, 10000);
 
 			function getLeaders(){
 				$.get(
@@ -322,7 +322,7 @@ $(document).ready(function(){
 			$("#display-leaders").hide();
 			$("#display-chatleaders").show();
 
-			setInterval(getLeaders, 500);
+			setInterval(getLeaders, 10000);
 
 			function getLeaders(){
 				$.get(
