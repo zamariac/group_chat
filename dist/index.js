@@ -7,7 +7,7 @@ $(document).ready(function(){
 			"2": "chat2",
 			"3": "chat3",
 			"chat-leaders": "chatLeaders",
-			"leaderboard": "leaderboard" 
+			"leaderboard": "leaderboard" //g
 			},
 
 
@@ -16,6 +16,9 @@ $(document).ready(function(){
 
 			$(".page").hide();
 			$("#home").show();
+			$("#window2").hide();
+			$("#window3").hide();
+			$("#window").show();
 
 			$("#submit-form").on("submit", function(e) {
 			e.preventDefault();
@@ -31,7 +34,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
-					chatroom: 1, //set this to attr or hash value of anchor tags? 1,2,3??
+					chatroom: .attr('href'), //set this to attr or hash value of anchor tags? 1,2,3??
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -99,6 +102,8 @@ $(document).ready(function(){
 			console.log("leaderboard");
 			$(".page").hide();
 			$("#leaderboard").show();
+			$("#display-leaders").show();
+			$("#display-chatleaders").hide();
 
 			setInterval(getLeaders, 5000);
 
@@ -131,14 +136,28 @@ $(document).ready(function(){
 
 		chat2: function() {
 			console.log("chat2");
+			$(".page").hide();
+			$("#home").show();
+			$("#window").hide();
+			$("#window2").show();
+			$("#window3").hide();
 		},
 
 		chat3: function() {
 			console.log("chat3");
+			$(".page").hide();
+			$("#home").show();
+			$("#window").hide();
+			$("#window2").hide();
+			$("#window3").show();
 		},
 
 		chatLeaders: function() {
 			console.log("chatLeaders")
+			$(".page").hide();
+			$("#leaderboard").show();
+			$("#display-leaders").hide();
+			$("#display-chatleaders").show();
 		}
 	});
 
