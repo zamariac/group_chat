@@ -19,8 +19,11 @@ $(document).ready(function(){
 			$("#window2").hide();
 			$("#window3").hide();
 			$("#window").show();
+			$("#Submit2").hide();
+			$("#Submit3").hide();
+			$("#Submit").show();
 
-			$("#submit-form").on("submit", function(e) {
+			$("#Submit").on("click", function(e) {
 			e.preventDefault();
 			// console.log($("#user").val());
 			// console.log($("#message").val());
@@ -34,7 +37,7 @@ $(document).ready(function(){
 			else {
 		
 				var myObj = {
-					chatroom: .attr('href'), //set this to attr or hash value of anchor tags? 1,2,3??
+					chatroom: 1, //set this to attr or hash value of anchor tags? 1,2,3??
 					username: $("#user").val(),
 					text: $("#message").val()
 				};
@@ -48,7 +51,7 @@ $(document).ready(function(){
 
 					);
 
-				$("#message").val("");
+				// $("#message").val("");
 
 			}
 
@@ -68,7 +71,7 @@ $(document).ready(function(){
 
 			function getMessages(){
 				$.get(
-					"https://warm-meadow-2141.herokuapp.com/messages",
+					"https://warm-meadow-2141.herokuapp.com/messages/1",
 					onMessagesReceived,
 					"json"
 					);
@@ -85,15 +88,15 @@ $(document).ready(function(){
 
 			function render(messages){
 				var returnHtml = "";
-				for (var i=0; i<messages.length; i++){
-					 var currentMessage = messages[i];
-					 var messageTime = currentMessage.created_at;
-					 // console.log(moment(messageTime).minute());
-					 // console.log(messageTime);
-					if(currentMessage.hasOwnProperty("username") && currentMessage.hasOwnProperty("text")){
-						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+					for (var i=0; i<messages.length; i++){
+						 var currentMessage = messages[i];
+						 var messageTime = currentMessage.created_at;
+						 if (currentMessage.chatroom === 1) {
+						 // console.log(moment(messageTime).minute());
+						 // console.log(messageTime);
+							returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+						}
 					}
-				}
 				return returnHtml;
 			}	
 		},
@@ -105,7 +108,7 @@ $(document).ready(function(){
 			$("#display-leaders").show();
 			$("#display-chatleaders").hide();
 
-			setInterval(getLeaders, 5000);
+			setInterval(getLeaders, 500);
 
 			function getLeaders(){
 				$.get(
@@ -141,6 +144,86 @@ $(document).ready(function(){
 			$("#window").hide();
 			$("#window2").show();
 			$("#window3").hide();
+			$("#Submit").hide();
+			$("#Submit3").hide();
+			$("#Submit2").show();
+
+			$("#Submit2").on("click", function(e) {
+			e.preventDefault();
+			// console.log($("#user").val());
+			// console.log($("#message").val());
+
+			if($("#user").val().length === 0 || $("#message").val().length === 0){
+				console.log ("empty string") ; 
+				console.log($("#user").val());
+				console.log($("#message").val());
+			}
+			
+			else {
+		
+				var myObj = {
+					chatroom: 2, //set this to attr or hash value of anchor tags? 1,2,3??
+					username: $("#user").val(),
+					text: $("#message").val()
+				};
+
+				console.log(myObj);
+
+				$.post(
+					"https://warm-meadow-2141.herokuapp.com/messages",
+					myObj, 
+					"json"
+
+					);
+
+				$("#message").val("");
+
+			}
+
+		});	
+
+			setInterval(getMessages, 500);
+
+			// window.setTimeout (function() {
+			// var objDiv = document.getElementById("window");
+			// objDiv.scrollTop = objDiv.scrollHeight;
+			// }, 500);
+
+			window.setInterval (function() {
+			var objDiv = document.getElementById("window");
+			objDiv.scrollTop = objDiv.scrollHeight;
+			}, 1000);
+
+			function getMessages(){
+				$.get(
+					"https://warm-meadow-2141.herokuapp.com/messages/2",
+					onMessagesReceived,
+					"json"
+					);
+			}
+
+			function onMessagesReceived(data) {
+				var myChatroom = render2(data);
+				// console.log(data);
+				var $chatWindow = $("#window2");
+				$chatWindow.html(myChatroom);
+
+				// console.log(data[0].created_at);
+			}
+
+			function render2(messages){
+				var returnHtml = "";
+				for (var i=0; i<messages.length; i++){
+					 var currentMessage = messages[i];
+					 var messageTime = currentMessage.created_at;
+					 if (currentMessage.chatroom === 2) {
+					 // console.log(moment(messageTime).minute());
+					 // console.log(messageTime);
+						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+					}
+				}
+				return returnHtml;
+			}	
 		},
 
 		chat3: function() {
@@ -150,6 +233,86 @@ $(document).ready(function(){
 			$("#window").hide();
 			$("#window2").hide();
 			$("#window3").show();
+			$("#Submit").hide();
+			$("#Submit2").hide();
+			$("#Submit3").show();
+
+			$("#Submit3").on("click", function(e) {
+			e.preventDefault();
+			// console.log($("#user").val());
+			// console.log($("#message").val());
+
+			if($("#user").val().length === 0 || $("#message").val().length === 0){
+				console.log ("empty string") ; 
+				console.log($("#user").val());
+				console.log($("#message").val());
+			}
+			
+			else {
+		
+				var myObj = {
+					chatroom: 3, //set this to attr or hash value of anchor tags? 1,2,3??
+					username: $("#user").val(),
+					text: $("#message").val()
+				};
+
+				console.log(myObj);
+
+				$.post(
+					"https://warm-meadow-2141.herokuapp.com/messages",
+					myObj, 
+					"json"
+
+					);
+
+				// $("#message").val("");
+
+			}
+
+		});	
+
+			setInterval(getMessages, 500);
+
+			// window.setTimeout (function() {
+			// var objDiv = document.getElementById("window");
+			// objDiv.scrollTop = objDiv.scrollHeight;
+			// }, 500);
+
+			window.setInterval (function() {
+			var objDiv = document.getElementById("window");
+			objDiv.scrollTop = objDiv.scrollHeight;
+			}, 1000);
+
+			function getMessages(){
+				$.get(
+					"https://warm-meadow-2141.herokuapp.com/messages/3",
+					onMessagesReceived,
+					"json"
+					);
+			}
+
+			function onMessagesReceived(data) {
+				var myChatroom = render3(data);
+				// console.log(data);
+				var $chatWindow = $("#window3");
+				$chatWindow.html(myChatroom);
+
+				// console.log(data[0].created_at);
+			}
+
+			function render3(messages){
+				var returnHtml = "";
+				for (var i=0; i<messages.length; i++){
+					 var currentMessage = messages[i];
+					 var messageTime = currentMessage.created_at;
+					 if (currentMessage.chatroom === 3) {
+					 // console.log(moment(messageTime).minute());
+					 // console.log(messageTime);
+						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+					}
+				}
+				return returnHtml;
+			}	
 		},
 
 		chatLeaders: function() {
