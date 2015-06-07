@@ -32,6 +32,9 @@ $(document).ready(function(){
 			
 			else {
 
+				var snd = new Audio("GTalkNotify 2.mp3");
+				snd.play();
+
 				var myObj = {
 					chatroom: 1,
 					username: $("#user").val(),
@@ -84,12 +87,13 @@ $(document).ready(function(){
 						 var url = validator.contains(msgTxt, "http://");
 						 var jpg = validator.contains(msgTxt, "jpg");
 						 var png = validator.contains(msgTxt, "png");
+						 var sound = 
 						 console.log(url && jpg || url && png);
 						 if(url && png) {
-						 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+						 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 						 }
 						 else if(url && jpg) {
-						 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+						 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 						 }
 						 else {
 						 returnHtml = returnHtml + "<div class='comment'>"+ "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")"+": " + msgTxt+ "</div>";
@@ -149,7 +153,7 @@ $(document).ready(function(){
 				var returnHtml = "<h3>User Leaderboard</h3> <ol>";
 				for (name in leaders){
 					value = leaders[name];
-					returnHtml = returnHtml + "<li>"+ name+ " ------------- " +value + " Msg" + "</li>";
+					returnHtml = returnHtml + "<li>"+ name + " " +"<span class='badge'>"+value + " Msg"+"</span>" + "</li>";
 				}
 				return returnHtml + "</ol>";
 			}	
@@ -230,12 +234,13 @@ $(document).ready(function(){
 					 var png = validator.contains(msgTxt, "png");
 					 console.log(url && jpg || url && png);
 					 if(url && png) {
-					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 					 }
 					 else if(url && jpg) {
-					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 					 }
-					else {returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+					else {
+						returnHtml = returnHtml + "<div class='comment'>"+ "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")"+": " + msgTxt+ "</div>";
 					}
 				}
 				return returnHtml;
@@ -316,13 +321,13 @@ $(document).ready(function(){
 					 var png = validator.contains(msgTxt, "png");
 					 console.log(url && jpg || url && png);
 					 if(url && png) {
-					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 					 }
 					 else if(url && jpg) {
-					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 	returnHtml = returnHtml + "<div class='comment'>" + "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")" + ": " + "<img src="+msgTxt+">" + "</div>";
 					 }					 
 					else { 
-						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+						returnHtml = returnHtml + "<div class='comment'>"+ "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")"+": " + msgTxt+ "</div>";
 					}
 				}
 				return returnHtml;
@@ -358,19 +363,17 @@ $(document).ready(function(){
 				var returnHtml = "<h3>Most Active Chatrooms</h3>";
 				for (name in leaders){
 					value = leaders[name];
-					returnHtml = returnHtml + "<div> Chatroom "+ name+ ": " +value + " Total Msg</div>";
+					returnHtml = returnHtml + "<div>"+"Chatroom"+name+ ": "+"<span class='badge'>"  +value + " Total Msg"+"</span></div>";
 				}
 				return returnHtml;
 			}	
 		}
 	});
 	
+
 	var myRouter = new bluePrint();
 	Backbone.history.start();
 
-	// $("button").on("mouseenter", colorIn() {
-		
-	// })
 
 });
 

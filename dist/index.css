@@ -1,19 +1,19 @@
 
 #window {
-	height: 600px;
+	height: 400px;
 	margin-top: -10px;
 	overflow-y: auto;
 
 }
 
 #window2 {
-	height: 600px;
+	height: 400px;
 	margin-top: -10px;
 	overflow-y: auto;
 }
 
 #window3 {
-	height: 600px;
+	height: 400px;
 	margin-top: -10px;
 	overflow-y: auto;
 
@@ -100,4 +100,6 @@ img {
 	max-height: 200px;
 	max-width: 200px;
 	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius:20px;
 }
