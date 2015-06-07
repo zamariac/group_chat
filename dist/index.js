@@ -72,7 +72,7 @@ $(document).ready(function(){
 				var myChatroom = render(data);
 				// console.log(data);
 				var $chatWindow = $("#window");
-				$chatWindow.html(myChatroom).emoticonize(0);
+				$chatWindow.html(myChatroom).emoticonize();
 			}
 
 			function render(messages){
@@ -81,7 +81,19 @@ $(document).ready(function(){
 						 var currentMessage = messages[i];
 						 var messageTime = currentMessage.created_at;
 						 var msgTxt = currentMessage.text;
-						 returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + msgTxt + "</div>";
+						 var url = validator.contains(msgTxt, "http://");
+						 var jpg = validator.contains(msgTxt, "jpg");
+						 var png = validator.contains(msgTxt, "png");
+						 console.log(url && jpg || url && png);
+						 if(url && png) {
+						 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+						 }
+						 else if(url && jpg) {
+						 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+						 }
+						 else {
+						 returnHtml = returnHtml + "<div class='comment'>"+ "<strong>"+currentMessage.username +"</strong>"+ " ("+moment(messageTime).format("hh: mm") + ")"+": " + msgTxt+ "</div>";
+						}
 					}
 				
 				return returnHtml;
@@ -204,7 +216,7 @@ $(document).ready(function(){
 			function onMessagesReceived(data) {
 				var myChatroom = render2(data);
 				var $chatWindow = $("#window2");
-				$chatWindow.html(myChatroom);
+				$chatWindow.html(myChatroom).emoticonize();
 			}
 
 			function render2(messages){
@@ -212,8 +224,18 @@ $(document).ready(function(){
 				for (var i=0; i<messages.length; i++){
 					 var currentMessage = messages[i];
 					 var messageTime = currentMessage.created_at;
-					 if (currentMessage.chatroom === 2) {
-						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
+					 var msgTxt = currentMessage.text;
+					 var url = validator.contains(msgTxt, "http://");
+					 var jpg = validator.contains(msgTxt, "jpg");
+					 var png = validator.contains(msgTxt, "png");
+					 console.log(url && jpg || url && png);
+					 if(url && png) {
+					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 }
+					 else if(url && jpg) {
+					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 }
+					else {returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 					}
 				}
 				return returnHtml;
@@ -280,7 +302,7 @@ $(document).ready(function(){
 			function onMessagesReceived(data) {
 				var myChatroom = render3(data);
 				var $chatWindow = $("#window3");
-				$chatWindow.html(myChatroom);
+				$chatWindow.html(myChatroom).emoticonize();
 			}
 
 			function render3(messages){
@@ -288,7 +310,18 @@ $(document).ready(function(){
 				for (var i=0; i<messages.length; i++){
 					 var currentMessage = messages[i];
 					 var messageTime = currentMessage.created_at;
-					 if (currentMessage.chatroom === 3) {
+					 var msgTxt = currentMessage.text;
+					 var url = validator.contains(msgTxt, "http://");
+					 var jpg = validator.contains(msgTxt, "jpg");
+					 var png = validator.contains(msgTxt, "png");
+					 console.log(url && jpg || url && png);
+					 if(url && png) {
+					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 }
+					 else if(url && jpg) {
+					 	returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + "<img src="+msgTxt+">" + "</div>";
+					 }					 
+					else { 
 						returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
 					}
 				}

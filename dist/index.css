@@ -95,3 +95,9 @@ footer {
 	color:gray;
 	width:100%;
 }
+
+img {
+	max-height: 200px;
+	max-width: 200px;
+	margin-top: 10px;
+}
