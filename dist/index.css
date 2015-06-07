@@ -9,15 +9,12 @@
 
 #window2 {
 	height: 600px;
-/*	background-color: red;*/
 	margin-top: -10px;
 	overflow-y: auto;
-
 }
 
 #window3 {
 	height: 600px;
-/*	background-color: red;*/
 	margin-top: -10px;
 	overflow-y: auto;
 
@@ -25,23 +22,54 @@
 
 #message {
 	width: 100%;
+	height:100px;
+	margin-bottom: 10px;
+}
+
+#user {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+button {
+	width: 100%;
+	height:40px;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px white;
+}
+
+button:hover {
+	background-color: green;
 }
 
 #display-chatleaders {
 	height:500px;
-	text-align: center;
-	background-color: blue;
-}
+	text-align: left;
+	color:blue;
+	font-size: 20px;
+	font-weight: bold;
 }
 
-#submit-time {
-	float:right;
+#display-chatleaders h3{
+	color:black;
+	text-align: center;
+	text-decoration: underline;
 }
 
 #display-leaders {
 	height:500px;
-	text-align: center;
-	background-color: gray;
+	text-align: left;
+	font-size: 20px;
+	color:blue;
+	font-weight: bold;
+}
+
+#display-leaders h3{
+		color: black;
+		text-decoration: underline;
+		text-align: center;
 }
 
 strong {
@@ -50,5 +78,21 @@ strong {
 
 #recent {
 	height: 500px;
-	background-color: green;
+	text-align: left;
+	color:blue;
+	font-size: 20px;
+	font-weight: bold;
+
+}
+
+#recent h3 {
+	color: black;
+	text-decoration: underline;
+	text-align: center;
+}
+
+footer {
+	height:100px;
+	color:gray;
+	width:100%;
 }

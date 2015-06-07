@@ -93,9 +93,10 @@ $(document).ready(function(){
 			$(".page").hide();
 			$("#leaderboard").show();
 			$("#display-leaders").show();
+			$("#recent").show();
 			$("#display-chatleaders").hide();
 
-			setInterval(getLeaders, 3000);
+			setInterval(getLeaders, 1000);
 
 			function getLeaders(){
 				$.get(
@@ -119,26 +120,26 @@ $(document).ready(function(){
 				getUsers();
 				function onUsersReceived(users) {
 					console.log(users);
-					var returnUserHtml = "";
+					var returnUserHtml = "<h3>Recent Users</h3> <ul>";
 					var $userWindow = $("#recent");
 					for (var i= 0; i < users.length; i++){
 						var currentUser = users[i];
 						console.log(currentUser);
-						returnUserHtml = returnUserHtml + "<div>" + currentUser + "</div>";
+						returnUserHtml = returnUserHtml + "<li>" + currentUser + "</li>";
 					}
-				return $userWindow.html(returnUserHtml);
+				return $userWindow.html(returnUserHtml) + "</ul>";
 	
 				}
 				
 			}
 
 			function renderLeaders(leaders){
-				var returnHtml = "";
+				var returnHtml = "<h3>User Leaderboard</h3> <ol>";
 				for (name in leaders){
 					value = leaders[name];
-					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
+					returnHtml = returnHtml + "<li>"+ name+ " ------------- " +value + " Msg" + "</li>";
 				}
-				return returnHtml;
+				return returnHtml + "</ol>";
 			}	
 		},
 
@@ -301,8 +302,9 @@ $(document).ready(function(){
 			$("#leaderboard").show();
 			$("#display-leaders").hide();
 			$("#display-chatleaders").show();
+			$("#recent").hide();
 
-			setInterval(getLeaders, 10000);
+			setInterval(getLeaders, 1000);
 
 			function getLeaders(){
 				$.get(
@@ -320,19 +322,22 @@ $(document).ready(function(){
 			}
 
 			function renderChatLeaders(leaders){
-				var returnHtml = "";
+				var returnHtml = "<h3>Most Active Chatrooms</h3>";
 				for (name in leaders){
 					value = leaders[name];
-					returnHtml = returnHtml + "<div>"+ name+ ": " + "<strong>"+value +"</strong>" + "</div>";
+					returnHtml = returnHtml + "<div> Chatroom "+ name+ ": " +value + " Total Msg</div>";
 				}
 				return returnHtml;
 			}	
 		}
 	});
-
+	
 	var myRouter = new bluePrint();
 	Backbone.history.start();
 
+	// $("button").on("mouseenter", colorIn() {
+		
+	// })
 
 });
 
