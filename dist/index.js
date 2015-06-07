@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 		});	
 
-			setInterval(getMessages, 5000);
+			setInterval(getMessages, 1000);
 
 			window.setInterval (function() {
 			var objDiv = document.getElementById("window");
@@ -72,7 +72,7 @@ $(document).ready(function(){
 				var myChatroom = render(data);
 				// console.log(data);
 				var $chatWindow = $("#window");
-				$chatWindow.html(myChatroom);
+				$chatWindow.html(myChatroom).emoticonize(0);
 			}
 
 			function render(messages){
@@ -80,10 +80,10 @@ $(document).ready(function(){
 					for (var i=0; i<messages.length; i++){
 						 var currentMessage = messages[i];
 						 var messageTime = currentMessage.created_at;
-						 if (currentMessage.chatroom === 1) {
-							returnHtml = returnHtml + "<div>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + currentMessage.text + "</div>";
-						}
+						 var msgTxt = currentMessage.text;
+						 returnHtml = returnHtml + "<div class='comment'>"+"["+moment(messageTime).format("hh: mm: ss") + "] " + "<strong>"+currentMessage.username +"</strong>"+ ": " + msgTxt + "</div>";
 					}
+				
 				return returnHtml;
 			}	
 		},
