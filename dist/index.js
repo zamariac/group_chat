@@ -180,6 +180,9 @@ $(document).ready(function(){
 			}
 			
 			else {
+
+				var snd = new Audio("GTalkNotify 2.mp3");
+				snd.play();
 		
 				var myObj = {
 					chatroom: 2,
@@ -269,6 +272,9 @@ $(document).ready(function(){
 			
 			else {
 		
+				var snd = new Audio("GTalkNotify 2.mp3");
+				snd.play();
+				
 				var myObj = {
 					chatroom: 3,
 					username: $("#user").val(),
